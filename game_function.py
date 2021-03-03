@@ -63,8 +63,6 @@ def start_game(ai_settings, screen, stats, ship, aliens, bullets):
     bullets.empty()
     create_fleet(ai_settings, screen, ship, aliens)
     ship.center_ship()
-
-
 def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
     screen.fill(ai_settings.bg_color)
     for bullet in bullets:
