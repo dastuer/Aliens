@@ -59,7 +59,7 @@ def start_game(ai_settings, screen, stats,sco_boa, ship, aliens, bullets):
     sco_boa.prep_score()
     sco_boa.prep_high_score()
     sco_boa.prep_level()
-    sco_boa.prep_ships()
+    sco_boa.show_hp()
     aliens.empty()
     bullets.empty()
     create_fleet(ai_settings, screen, ship, aliens)
@@ -73,6 +73,7 @@ def update_screen(ai_settings, screen, stats, sco_boa, ship, aliens, bullets, pl
     ship.blitme()
     aliens.draw(screen)
     sco_boa.show_score()
+    sco_boa.show_hp()
     if not stats.game_active:
         play_button.draw_button()
     pygame.display.flip()
@@ -168,7 +169,7 @@ def update_alien(ai_settings, stats, screen, sco_boa, ship, aliens, bullets):
 def ship_hit(ai_settings, stats, screen, sco_boa, ship, aliens, bullets):
     if stats.ship_left > 0:
         stats.ship_left -= 1
-        sco_boa.prep_ships()
+        # sco_boa.prep_ships()
         aliens.empty()
         bullets.empty()
         create_fleet(ai_settings, screen, ship, aliens)
