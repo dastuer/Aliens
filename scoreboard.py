@@ -29,9 +29,9 @@ class Scoreboard():
 
     def prep_high_score(self):
         high_score = int(round(self.stats.high_score, -1))
-        high_score_str = "Highest:{:,}".format(high_score)
+        high_score_str = "Record: {:,}".format(high_score)
         self.high_score_image = self.font.render(
-            high_score_str, False, self.text_color, self.ai_settings.bg_color)
+            high_score_str, True, self.text_color, self.ai_settings.bg_color)
         self.high_score_rect = self.high_score_image.get_rect()
         self.high_score_rect.centerx = self.screen_rect.centerx
         self.high_score_rect.top = self.screen_rect.top
@@ -39,7 +39,7 @@ class Scoreboard():
     def prep_level(self):
         level_str = "Level: " + str(self.stats.level)
         self.level_image = self.font.render(
-            level_str, False, self.text_color, self.ai_settings.bg_color)
+            level_str, True, self.text_color, self.ai_settings.bg_color)
         self.level_rect = self.level_image.get_rect()
         self.level_rect.right = self.score_rect.right
         self.level_rect.top = self.score_rect.bottom + 10
