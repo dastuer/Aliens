@@ -118,7 +118,7 @@ def get_aliens_number_x(ai_settings, alien_width):
 
 def get_number_rows(ai_settings, ship_height, alien_height):
     available_space_y = ai_settings.screen_height - 2 * alien_height - ship_height
-    alien_rows = int(available_space_y / (2 * alien_height))
+    alien_rows = int(available_space_y / (2 * alien_height)) - 1
     return alien_rows
 
 
