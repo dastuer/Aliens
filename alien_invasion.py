@@ -10,9 +10,10 @@ from scoreboard import Scoreboard
 
 
 def run_game():
-    pygame.init()
+    pygame.init() 
     ai_settings = Settings()
-    screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
+    screen = pygame.display.set_mode( 
+        (ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
     play_button = Button(ai_settings, screen, "Play")
     ship = Ship(ai_settings, screen)
@@ -24,13 +25,14 @@ def run_game():
     stats = GameStats(ai_settings)
     sco_boa = Scoreboard(ai_settings, screen, stats)
     while True:
-        gf.check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
-        if stats.game_active :
+        gf.check_events(ai_settings, screen, stats, sco_boa,
+                        play_button, ship, aliens, bullets)
+        if stats.game_active:
             ship.update()
-            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
-            gf.update_alien(ai_settings, stats, screen, ship, aliens ,bullets)
-        gf.update_screen(ai_settings, screen, stats, sco_boa, ship, aliens, bullets, play_button)
-
+            gf.update_bullets(ai_settings, screen, stats, sco_boa, ship, aliens, bullets)
+            gf.update_alien(ai_settings, stats, screen, ship, aliens, bullets)
+        gf.update_screen(ai_settings, screen, stats, sco_boa,
+                         ship, aliens, bullets, play_button)
 
 
 run_game()

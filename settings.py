@@ -1,7 +1,7 @@
 class Settings:
     def __init__(self):
-        self.screen_width = 1920
-        self.screen_height = 1080
+        self.screen_width = 1200
+        self.screen_height = 800
         self.bg_color = (255, 255,  255)
 
         self.ship_limit = 3
@@ -16,8 +16,10 @@ class Settings:
         self.bullet_speed_factor = 4
         self.alien_speed_factor = 1
         self.fleet_direction = 1
+        self.alien_points = 50
 
     def increase_speed(self):
         self.ship_speed_factor *= self.speedup_scale
         self.bullet_speed_factor *= self.speedup_scale
         self.alien_speed_factor *= self.speedup_scale
+        self.alien_points += 10
