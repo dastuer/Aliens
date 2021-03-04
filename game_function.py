@@ -5,7 +5,7 @@ from alien import Alien
 from time import sleep
 
 
-def check_keydown_events(event, ai_settings, screen, ship, bullets):
+def check_keydown_events(event, ai_settings, screen, stats, ship, bullets):
     if event.key == pygame.K_RIGHT:
         ship.moving_right = True
     if event.key == pygame.K_LEFT:
@@ -17,7 +17,7 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
     if event.key == pygame.K_SPACE:
         fire_bullet(ai_settings, screen, ship, bullets)
     if event.key == pygame.K_q:
-        sys.exit()
+        exit_game(stats)
 
 
 def check_keyup_events(event, ship):
@@ -34,9 +34,9 @@ def check_keyup_events(event, ship):
 def check_events(ai_settings, screen, stats, sco_boa, play_button, ship, aliens, bullets):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            sys.exit()
+            exit_game(stats)
         elif event.type == pygame.KEYDOWN:
-            check_keydown_events(event, ai_settings, screen, ship, bullets)
+            check_keydown_events(event, ai_settings, screen, stats, ship, bullets)
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -193,3 +193,6 @@ def check_high_score(stats, sco_boa):
         stats.high_score = stats.score
         sco_boa.prep_high_score()
 
+def exit_game(stats):
+    stats.write_high_score()
+    sys.exit()

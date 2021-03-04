@@ -23,6 +23,7 @@ def run_game():
     # alien = Alien(ai_settings,screen)
     # print('x:'+str(alien.rect.x) + ' y:'+str(alien.rect.y) + ' centerx:' + str(alien.rect.centerx))
     stats = GameStats(ai_settings)
+    stats.get_high_score()
     sco_boa = Scoreboard(ai_settings, screen, stats)
     while True:
         gf.check_events(ai_settings, screen, stats, sco_boa,
