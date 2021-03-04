@@ -59,6 +59,7 @@ def start_game(ai_settings, screen, stats,sco_boa, ship, aliens, bullets):
     sco_boa.prep_score()
     sco_boa.prep_high_score()
     sco_boa.prep_level()
+    sco_boa.prep_ships()
     aliens.empty()
     bullets.empty()
     create_fleet(ai_settings, screen, ship, aliens)
@@ -156,17 +157,18 @@ def check_fleet_edges(ai_settings, aliens):
             break
 
 
-def update_alien(ai_settings, stats, screen, ship, aliens, bullets):
+def update_alien(ai_settings, stats, screen, sco_boa, ship, aliens, bullets):
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
     if pygame.sprite.spritecollideany(ship, aliens):
-        ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
-    check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets)
+        ship_hit(ai_settings, stats, screen, sco_boa, ship, aliens, bullets)
+    check_aliens_bottom(ai_settings, stats, screen, sco_boa, ship, aliens, bullets)
 
 
-def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
+def ship_hit(ai_settings, stats, screen, sco_boa, ship, aliens, bullets):
     if stats.ship_left > 0:
         stats.ship_left -= 1
+        sco_boa.prep_ships()
         aliens.empty()
         bullets.empty()
         create_fleet(ai_settings, screen, ship, aliens)
@@ -177,11 +179,11 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
         pygame.mouse.set_visible(True)
 
 
-def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
+def check_aliens_bottom(ai_settings, stats, screen, sco_boa, ship, aliens, bullets):
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
-            ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+            ship_hit(ai_settings, stats, screen, sco_boa, ship, aliens, bullets)
             break
 
 
