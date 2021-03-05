@@ -196,7 +196,6 @@ def check_high_score(stats, sco_boa):
         stats.high_score = stats.score
         sco_boa.prep_high_score()
 
-
 def exit_game(stats):
     stats.write_high_score()
     sys.exit()
