@@ -36,7 +36,8 @@ def check_events(ai_settings, screen, stats, sco_boa, play_button, ship, aliens,
         if event.type == pygame.QUIT:
             exit_game(stats)
         elif event.type == pygame.KEYDOWN:
-            check_keydown_events(event, ai_settings, screen, stats, ship, bullets)
+            check_keydown_events(event, ai_settings,
+                                 screen, stats, ship, bullets)
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -51,7 +52,7 @@ def check_play_button(ai_settings, screen, stats, sco_boa, play_button, ship, al
         start_game(ai_settings, screen, stats, sco_boa, ship, aliens, bullets)
 
 
-def start_game(ai_settings, screen, stats,sco_boa, ship, aliens, bullets):
+def start_game(ai_settings, screen, stats, sco_boa, ship, aliens, bullets):
     ai_settings.init_dynamic_settings()
     pygame.mouse.set_visible(False)
     stats.reset_stats()
@@ -163,7 +164,8 @@ def update_alien(ai_settings, stats, screen, sco_boa, ship, aliens, bullets):
     aliens.update()
     if pygame.sprite.spritecollideany(ship, aliens):
         ship_hit(ai_settings, stats, screen, sco_boa, ship, aliens, bullets)
-    check_aliens_bottom(ai_settings, stats, screen, sco_boa, ship, aliens, bullets)
+    check_aliens_bottom(ai_settings, stats, screen,
+                        sco_boa, ship, aliens, bullets)
 
 
 def ship_hit(ai_settings, stats, screen, sco_boa, ship, aliens, bullets):
@@ -184,7 +186,8 @@ def check_aliens_bottom(ai_settings, stats, screen, sco_boa, ship, aliens, bulle
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
-            ship_hit(ai_settings, stats, screen, sco_boa, ship, aliens, bullets)
+            ship_hit(ai_settings, stats, screen,
+                     sco_boa, ship, aliens, bullets)
             break
 
 
@@ -192,6 +195,7 @@ def check_high_score(stats, sco_boa):
     if stats.score > stats.high_score:
         stats.high_score = stats.score
         sco_boa.prep_high_score()
+
 
 def exit_game(stats):
     stats.write_high_score()
